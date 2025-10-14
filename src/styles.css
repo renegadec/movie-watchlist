@@ -1,0 +1,60 @@
+html, body {
+    margin: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:  center;
+}
+
+.header { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    color: #FFFFFF;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/src/images/header-img.png');
+    background-size: cover;
+    max-width: 550px;
+    width: 100%;
+    height: 208px;
+}
+
+.header h1 {
+    font-size: 2.625rem;
+    font-weight: 800;
+}
+
+.header p {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    width: 462px;
+    height: 38px;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+}
+
+.fa-solid {
+    align-self: center;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    color: #9CA3AF;
+}
+
+.search input {
+    width: 300px;
+}
+
+
