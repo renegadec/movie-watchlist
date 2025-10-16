@@ -1,5 +1,7 @@
 html, body {
     margin: 0;
+    width: 100%;
+    min-width: 320px;
 }
 
 body {
@@ -12,36 +14,37 @@ main {
     align-items: center;
     margin: 0 auto;
     min-height: 100vh;
-    max-width: 550px;
+    max-width: 100%;
 }
 
 .header { 
-    width: 100%;
-    height: 208px;
+    height: 22vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 60px;
+    justify-content: space-around;
     color: #FFFFFF;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/src/images/header-img.png');
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
 .header h1 {
-    font-size: 2.625rem;
+    font-size: 1.625rem; /*2.625*/
     font-weight: 800;
 }
 
 .header p {
-    font-size: 0.875rem;
+    font-size: 0.775rem; /*0.875*/
     font-weight: 700;
 }
 
 .search {
     display: flex;
     justify-content: space-between;
-    width: 462px;
+    width: 70%; /*462*/
     height: 38px;
     border: 1px solid #D1D5DB;
     border-radius: 6px;
@@ -62,18 +65,20 @@ main {
 
 .search input[type="text"] {
     border: none;
-    width: 300px;
+    width: 80%;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.875rem; /*1rem*/
     font-weight: 500;
     color: #6B7280;
     flex: 1;
 }
 
 .search button {
-    width: 120px;
+    padding: 0 20px;
     border: none;
     border-left: 1px solid #D1D5DB;
+    font-size: 0.875rem;
+    color: #374151;
 }
 
 .watch-list {
@@ -81,11 +86,46 @@ main {
     height: 80vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    text-align: center;
+    gap: 12px;
+    color: #DFDDDD;
 }
 
-.fa-solid {
-    height: 61.24px;
+.watch-list i{
+    font-size: 100px;
+    margin-left: 0;
+    line-height: 1;
+    width: auto; 
+    height: auto; 
+}
+
+.watch-list p {
+    display: block;
+    margin: 0;
+    line-height: 1.2;
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/*Media Querries for screen size 870px >> */
+
+@media(min-width: 870px) {
+
+    .header {
+        height: 30vh;
+    }
+
+    .header h1 {
+        font-size: 2.625rem;
+    }
+
+    .header p {
+        font-size: 0.875rem;
+    }
+
+    
 }
 
 
