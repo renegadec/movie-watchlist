@@ -9,7 +9,7 @@ function handleFetch(){
     const userInputValue = document.getElementById('user-input').value
     const formattedInput = userInputValue.split(' ').join('+')
 
-    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${formattedInput}`)
+    fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${formattedInput}`)
     .then(res => res.json())
     .then(data => {
         
@@ -19,7 +19,7 @@ function handleFetch(){
         searchList.innerHTML = ''
 
         movieIds.forEach(movieId => {
-            fetch(`http://www.omdbapi.com/?apikey=${apiKey}&i=${movieId}`)
+            fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movieId}`)
                 .then(res => res.json())
                 .then(movie => { 
                     // Create HTML for this single movie
@@ -45,8 +45,10 @@ function handleFetch(){
                                 <div class="movie-plot">
                                     <p>${movie.Plot}</p>
                                 </div>
-                            </div>    
-                        </div>`
+                                
+                            </div>
+                        </div>
+                        <hr>`
                     
                     searchList.innerHTML += movieHTML
                 })
