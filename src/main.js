@@ -18,8 +18,14 @@ document.addEventListener('click', function(e){
 
 async function handleFetch(){
     
-    const userInputValue = document.getElementById('user-input').value
+    const userInputEl = document.getElementById('user-input')
+    const userInputValue = userInputEl ? userInputEl.value : ''
     const formattedInput = userInputValue.split(' ').join('+')
+    
+    // Clear the input field after clicking search
+    if (userInputEl) {
+        userInputEl.value = ''
+    }
 
     const response = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=${formattedInput}`)
     const data = await response.json()
@@ -72,7 +78,6 @@ async function handleFetch(){
 }
 
 function addToWatchlist(movieId) {
-    console.log('Adding movie to watchlist:', movieId)
     
     // Get existing watchlist from localStorage or create empty array
     let watchlist = JSON.parse(localStorage.getItem('watchlist')) || []
@@ -89,27 +94,21 @@ function addToWatchlist(movieId) {
             button.innerHTML = '<i class="fa-solid fa-check"></i> <p>Added</p>'
         }
     } else {
-        console.log('Movie is already in watchlist')
+        alert('Movie is already in watchlist')
     }
 }
 
 function renderWatchlist() {
-    console.log('renderWatchlist function called')
     const watchlistContainer = document.getElementById('movies-to-watch')
     
     if (!watchlistContainer) {
-        console.log('Not on watchlist page - container not found')
         return
     }
     
-    console.log('Found watchlist container')
-    
     // Get watchlist from localStorage
     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || []
-    console.log('Watchlist from localStorage:', watchlist)
     
     if (watchlist.length === 0) {
-        console.log('Watchlist is empty, showing empty state')
         watchlistContainer.innerHTML = `
             <div class="empty-watchlist">
                
@@ -128,9 +127,7 @@ function renderWatchlist() {
     watchlistContainer.innerHTML = ''
     
     // Fetch and render each movie
-    console.log('Starting to fetch movies for watchlist')
     watchlist.forEach((movieId, index) => {
-        console.log(`Fetching movie ${index + 1}: ${movieId}`)
         fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movieId}`)
             .then(res => res.json())
             .then(movie => {
@@ -161,10 +158,6 @@ function renderWatchlist() {
                     <hr>
                 `
                 watchlistContainer.innerHTML += movieHTML
-                console.log('Movie HTML added to container')
-            })
-            .catch(error => {
-                console.error('Error fetching movie:', error)
             })
     })
 }
@@ -184,8 +177,6 @@ function removeFromWatchlist(movieId) {
     
     // Re-render the watchlist
     renderWatchlist()
-    
-    console.log('Movie removed from watchlist')
 }
 
 // Check if we're on the watchlist page and render movies
@@ -193,11 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if we're on the watchlist page by looking for the specific container
     const watchlistContainer = document.getElementById('movies-to-watch')
     if (watchlistContainer) {
-        console.log('On watchlist page, rendering movies...')
-        console.log('Current localStorage watchlist:', localStorage.getItem('watchlist'))
         renderWatchlist()
-    } else {
-        console.log('Not on watchlist page')
     }
 })
     
